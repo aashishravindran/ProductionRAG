@@ -14,8 +14,8 @@ env/
 # Environment
 .env
 
-# Generated data — produce locally, never commit
-data_sourcing/data/*.pdf
+# Generated data — LinkedIn PDF is personal, never commit
+data_sourcing/data/linkedin_profile.pdf
 
 # IDE
 .DS_Store
