@@ -12,6 +12,7 @@ from pathlib import Path
 SOURCES = {
     "github_profile.pdf": "data_sourcing/data/github_profile.pdf",
     "linkedin_profile.pdf": "data_sourcing/data/linkedin_profile.pdf",
+    "Gen_ai_divide.pdf": "data_sourcing/data/Gen_ai_divide.pdf",
 }
 
 PDF_MAGIC = b"%PDF-"
