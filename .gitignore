@@ -16,6 +16,9 @@ env/
 
 # Data source PDFs are committed intentionally
 
+# ChromaDB persistence
+chroma_db/
+
 # IDE
 .DS_Store
 .idea/
