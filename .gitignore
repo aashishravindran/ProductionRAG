@@ -19,6 +19,9 @@ env/
 # ChromaDB persistence
 chroma_db/
 
+# Claude Code
+.claude/
+
 # IDE
 .DS_Store
 .idea/
