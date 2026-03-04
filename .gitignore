@@ -19,8 +19,9 @@ env/
 # ChromaDB persistence
 chroma_db/
 
-# Claude Code
-.claude/
+# Claude Code — ignore local settings but track shared skills
+.claude/settings.local.json
+.claude/todos/
 
 # IDE
 .DS_Store
