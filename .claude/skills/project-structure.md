@@ -1,7 +1,7 @@
 # ProductionRAG -- Project Structure
 
 > Single source of truth for project layout, tech stack, and conventions.
-> Last updated: 2026-03-09
+> Last updated: 2026-03-09 (retrieval quality session)
 
 ## Overview
 A production-ready RAG application that turns a personal resume into an interactive chat interface, grounded in real data sources (GitHub profile, LinkedIn profile, supplementary PDFs).
@@ -30,12 +30,13 @@ ProductionRAG/
     rag_chain.py            -- End-to-end orchestrator (ask -> {answer, sources})
   ingestion/                -- Data ingestion pipeline
     __init__.py             -- Public API exports
-    config.py               -- Pipeline config (paths, chunk sizes, doc types)
+    config.py               -- Pipeline config (paths, chunk sizes per doc type, doc types)
     loader.py               -- PDF loading via PyPDFLoader with page metadata
     chunker.py              -- RecursiveCharacterTextSplitter-based chunking
     metadata.py             -- Metadata enrichment (doc types, chunk index, citations)
+    questions.py            -- Hypothetical question generation via Ollama (profile chunks only)
     store.py                -- ChromaDB vector store creation and loading
-    pipeline.py             -- Orchestrator: load -> chunk -> enrich -> store
+    pipeline.py             -- Orchestrator: load -> chunk (per-type sizes) -> enrich -> questions -> store
   tests/                    -- pytest test suite (ingestion + retrieval)
     __init__.py
     conftest.py             -- Shared fixtures (sample docs, fake embeddings, populated_store)
@@ -69,9 +70,11 @@ ProductionRAG/
 - pytest -- Testing framework
 
 ## Key Configuration
-- Chunk size: 500 characters, 100 overlap
+- Chunk sizes: per-document-type (profile: 1000/200, research: 500/100)
 - Embedding model: all-MiniLM-L6-v2 (384 dimensions)
 - Vector store: ChromaDB with local file persistence
+- Retrieval top_k: 5
+- Hypothetical question enrichment: 3 questions per profile chunk (Ollama-generated at ingestion)
 
 ## Conventions
 - Commit style: conventional commits (`type(scope): description`)
@@ -83,8 +86,8 @@ ProductionRAG/
 
 ## Pipeline Flow
 ```
-Source PDFs --> loader.py --> chunker.py --> metadata.py --> store.py
-                (PyPDF)    (split text)   (enrich meta)   (ChromaDB)
+Source PDFs --> loader.py --> chunker.py --> metadata.py --> questions.py --> store.py
+                (PyPDF)   (per-type split) (enrich meta) (HyDE questions)  (ChromaDB)
 
 Query --> retriever.py --> generator.py --> rag_chain.py --> {answer, sources}
            (ChromaDB)      (ChatOllama)    (orchestrator)

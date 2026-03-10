@@ -6,11 +6,14 @@ from langchain_core.embeddings import Embeddings
 from .config import (
     CHROMA_COLLECTION_NAME,
     CHROMA_PERSIST_DIR,
+    CHUNK_SIZES_BY_TYPE,
+    DOCUMENT_TYPES,
     SOURCE_PDFS,
 )
 from .loader import load_all_pdfs
 from .chunker import chunk_documents
 from .metadata import enrich_metadata
+from .questions import enrich_with_questions
 from .store import create_vector_store
 
 
@@ -42,10 +45,27 @@ def run_ingestion(
             model_name="sentence-transformers/all-MiniLM-L6-v2"
         )
 
-    # Load -> Chunk -> Enrich -> Store
+    # Load -> Chunk (per document type) -> Enrich -> Store
     documents = load_all_pdfs(sources)
-    chunks = chunk_documents(documents)
+
+    # Group documents by type so each group gets appropriate chunk sizes
+    docs_by_type: dict[str, list] = {}
+    for doc in documents:
+        doc_name = doc.metadata.get("document_name", "")
+        doc_type = DOCUMENT_TYPES.get(doc_name, "research")
+        docs_by_type.setdefault(doc_type, []).append(doc)
+
+    chunks = []
+    for doc_type, docs in docs_by_type.items():
+        type_config = CHUNK_SIZES_BY_TYPE.get(doc_type, {})
+        chunks.extend(chunk_documents(docs, **type_config))
+
     enriched_chunks = enrich_metadata(chunks)
+
+    # Generate hypothetical questions per chunk to improve retrieval
+    print("Generating hypothetical questions for each chunk...")
+    enriched_chunks = enrich_with_questions(enriched_chunks)
+
     create_vector_store(
         documents=enriched_chunks,
         embedding_function=embedding_function,

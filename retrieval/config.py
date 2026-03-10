@@ -5,7 +5,7 @@ OLLAMA_MODEL = "llama3.2:latest"
 OLLAMA_BASE_URL = "http://localhost:11434"
 
 # Retrieval settings
-RETRIEVAL_TOP_K = 4
+RETRIEVAL_TOP_K = 5
 
 # Prompt template
 SYSTEM_PROMPT = (

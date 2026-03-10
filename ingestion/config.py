@@ -20,3 +20,10 @@ DOCUMENT_TYPES = {
 
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 100
+
+# Per-document-type chunk sizes: profile docs are short and structured,
+# so larger chunks keep sections (e.g. Featured Repos) intact.
+CHUNK_SIZES_BY_TYPE = {
+    "profile": {"chunk_size": 1000, "chunk_overlap": 200},
+    "research": {"chunk_size": 500, "chunk_overlap": 100},
+}

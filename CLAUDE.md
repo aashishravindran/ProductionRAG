@@ -23,3 +23,7 @@ Restructured project documentation: moved detailed project structure to `.claude
 ## Session: 2026-03-09
 
 Added retrieval and generation module using Ollama (ChatOllama) for the RAG pipeline. Includes ChromaDB retrieval, LLM generation, and an end-to-end orchestrator. Added 12 new tests (37 total passing).
+
+## Session: 2026-03-09 (retrieval quality)
+
+Improved retrieval quality by adding per-document-type chunk sizes, hypothetical question generation for profile chunks at ingestion time, and using original content in LLM context. "Featured Repositories" query went from not-in-top-10 to rank 1; store reduced from 636 duplicate chunks to 153 unique.

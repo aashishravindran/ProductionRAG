@@ -24,7 +24,9 @@ def format_context(documents: list[Document]) -> str:
     for i, doc in enumerate(documents, 1):
         source = doc.metadata.get("source_file", "unknown")
         page = doc.metadata.get("page", "?")
-        parts.append(f"[{i}] (source: {source}, page: {page})\n{doc.page_content}")
+        # Use original_content if available (before hypothetical questions were prepended)
+        content = doc.metadata.get("original_content", doc.page_content)
+        parts.append(f"[{i}] (source: {source}, page: {page})\n{content}")
     return "\n\n".join(parts)
 
 
