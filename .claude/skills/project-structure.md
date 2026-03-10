@@ -1,7 +1,7 @@
 # ProductionRAG -- Project Structure
 
 > Single source of truth for project layout, tech stack, and conventions.
-> Last updated: 2026-03-03
+> Last updated: 2026-03-09
 
 ## Overview
 A production-ready RAG application that turns a personal resume into an interactive chat interface, grounded in real data sources (GitHub profile, LinkedIn profile, supplementary PDFs).
@@ -22,6 +22,12 @@ ProductionRAG/
       github_profile.pdf
       linkedin_profile.pdf
       Gen_ai_divide.pdf
+  retrieval/                -- Retrieval + generation module (Ollama)
+    __init__.py             -- Public API exports (ask, retrieve, generate)
+    config.py               -- Ollama model config, top_k, prompt templates
+    retriever.py            -- ChromaDB retrieval (get_retriever, retrieve)
+    generator.py            -- Ollama generation via ChatOllama (build_llm, format_context, generate)
+    rag_chain.py            -- End-to-end orchestrator (ask -> {answer, sources})
   ingestion/                -- Data ingestion pipeline
     __init__.py             -- Public API exports
     config.py               -- Pipeline config (paths, chunk sizes, doc types)
@@ -30,14 +36,17 @@ ProductionRAG/
     metadata.py             -- Metadata enrichment (doc types, chunk index, citations)
     store.py                -- ChromaDB vector store creation and loading
     pipeline.py             -- Orchestrator: load -> chunk -> enrich -> store
-  tests/                    -- pytest test suite for ingestion pipeline
+  tests/                    -- pytest test suite (ingestion + retrieval)
     __init__.py
-    conftest.py             -- Shared fixtures (sample docs, fake embeddings, temp PDFs)
+    conftest.py             -- Shared fixtures (sample docs, fake embeddings, populated_store)
     test_loader.py
     test_chunker.py
     test_metadata.py
     test_store.py
     test_pipeline.py
+    test_retriever.py       -- Retriever tests (5 tests)
+    test_generator.py       -- Generator tests (5 tests)
+    test_rag_chain.py       -- End-to-end RAG chain tests (2 tests)
   .env.example              -- Env var template (GITHUB_TOKEN, GITHUB_USERNAME)
   .gitignore
   CLAUDE.md                 -- Project log (lean format)
@@ -56,6 +65,7 @@ ProductionRAG/
 - ChromaDB -- Vector store (local persistence)
 - HuggingFace sentence-transformers -- Embeddings (all-MiniLM-L6-v2, 384 dims)
 - pypdf -- PDF parsing backend
+- langchain-ollama -- Ollama LLM integration (ChatOllama)
 - pytest -- Testing framework
 
 ## Key Configuration
@@ -75,14 +85,19 @@ ProductionRAG/
 ```
 Source PDFs --> loader.py --> chunker.py --> metadata.py --> store.py
                 (PyPDF)    (split text)   (enrich meta)   (ChromaDB)
+
+Query --> retriever.py --> generator.py --> rag_chain.py --> {answer, sources}
+           (ChromaDB)      (ChatOllama)    (orchestrator)
 ```
-Orchestrated by `pipeline.py` which chains all steps end-to-end.
+Ingestion orchestrated by `pipeline.py`; retrieval orchestrated by `rag_chain.py`.
 
 ## Status / What Exists
 - [x] Data sourcing (GitHub API to PDF, validation)
 - [x] Ingestion pipeline (load, chunk, enrich, store)
 - [x] Test suite for ingestion
-- [ ] Retrieval and reranking pipeline
-- [ ] LLM integration (generation step)
+- [x] Retrieval pipeline (ChromaDB similarity search)
+- [x] LLM integration (Ollama via ChatOllama)
+- [x] RAG chain orchestrator (ask -> answer + sources)
+- [x] Test suite for retrieval + generation
 - [ ] Chat interface / API layer
 - [ ] Data sourcing tests

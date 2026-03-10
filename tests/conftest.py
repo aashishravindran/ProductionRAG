@@ -59,3 +59,27 @@ class FakeEmbeddings(Embeddings):
 @pytest.fixture
 def fake_embeddings():
     return FakeEmbeddings()
+
+
+@pytest.fixture
+def populated_store(tmp_path, fake_embeddings):
+    """A ChromaDB store pre-loaded with sample resume chunks."""
+    from ingestion.store import create_vector_store
+
+    docs = [
+        Document(
+            page_content="John Doe has 5 years of Python experience and built ML pipelines.",
+            metadata={"source_file": "resume.pdf", "page": 0, "chunk_index": 0},
+        ),
+        Document(
+            page_content="Skills: Docker, Kubernetes, AWS, CI/CD, MLOps.",
+            metadata={"source_file": "resume.pdf", "page": 1, "chunk_index": 1},
+        ),
+        Document(
+            page_content="Education: MSc Computer Science from Stanford University.",
+            metadata={"source_file": "resume.pdf", "page": 2, "chunk_index": 2},
+        ),
+    ]
+    persist_dir = tmp_path / "test_chroma"
+    create_vector_store(docs, fake_embeddings, persist_dir, "test_resume")
+    return {"persist_dir": persist_dir, "collection_name": "test_resume"}

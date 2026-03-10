@@ -19,3 +19,7 @@ Built the data sourcing module (GitHub API to PDF generator, source validation) 
 ## Session: 2026-03-03 (wrap-up)
 
 Restructured project documentation: moved detailed project structure to `.claude/skills/project-structure.md` as single source of truth, trimmed CLAUDE.md to lean format with brief session entries.
+
+## Session: 2026-03-09
+
+Added retrieval and generation module using Ollama (ChatOllama) for the RAG pipeline. Includes ChromaDB retrieval, LLM generation, and an end-to-end orchestrator. Added 12 new tests (37 total passing).
