@@ -1,5 +1,6 @@
-"""Tests for retrieval.retriever module."""
+"""Tests for retrieval.retriever module (hybrid retrieve + get_retriever)."""
 import pytest
+from unittest.mock import patch, MagicMock
 from langchain_core.documents import Document
 
 
@@ -28,7 +29,12 @@ class TestGetRetriever:
 
 
 class TestRetrieve:
-    def test_returns_documents(self, populated_store, fake_embeddings):
+    @patch("retrieval.retriever.CrossEncoder")
+    def test_returns_documents(self, mock_ce_cls, populated_store, fake_embeddings):
+        mock_model = MagicMock()
+        mock_model.predict.return_value = [0.9, 0.8, 0.7]
+        mock_ce_cls.return_value = mock_model
+
         from retrieval.retriever import retrieve
 
         results = retrieve(
@@ -40,7 +46,12 @@ class TestRetrieve:
         assert len(results) > 0
         assert all(isinstance(doc, Document) for doc in results)
 
-    def test_respects_top_k(self, populated_store, fake_embeddings):
+    @patch("retrieval.retriever.CrossEncoder")
+    def test_respects_top_k(self, mock_ce_cls, populated_store, fake_embeddings):
+        mock_model = MagicMock()
+        mock_model.predict.return_value = [0.9, 0.8, 0.7]
+        mock_ce_cls.return_value = mock_model
+
         from retrieval.retriever import retrieve
 
         results = retrieve(

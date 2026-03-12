@@ -61,6 +61,15 @@ def fake_embeddings():
     return FakeEmbeddings()
 
 
+@pytest.fixture(autouse=True)
+def _clear_cross_encoder_cache():
+    """Clear the cached CrossEncoder between tests so mocks take effect."""
+    from retrieval.retriever import _get_cross_encoder
+    _get_cross_encoder.cache_clear()
+    yield
+    _get_cross_encoder.cache_clear()
+
+
 @pytest.fixture
 def populated_store(tmp_path, fake_embeddings):
     """A ChromaDB store pre-loaded with sample resume chunks."""

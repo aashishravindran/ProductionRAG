@@ -9,12 +9,14 @@ CHROMA_COLLECTION_NAME = "resume_documents"
 SOURCE_PDFS = {
     "github_profile": DATA_DIR / "github_profile.pdf",
     "linkedin_profile": DATA_DIR / "linkedin_profile.pdf",
+    "resume": DATA_DIR / "Resume.pdf",
     "Gen_ai_divide": DATA_DIR / "Gen_ai_divide.pdf",
 }
 
 DOCUMENT_TYPES = {
     "github_profile": "profile",
     "linkedin_profile": "profile",
+    "resume": "resume",
     "Gen_ai_divide": "research",
 }
 
@@ -25,5 +27,6 @@ CHUNK_OVERLAP = 100
 # so larger chunks keep sections (e.g. Featured Repos) intact.
 CHUNK_SIZES_BY_TYPE = {
     "profile": {"chunk_size": 1000, "chunk_overlap": 200},
+    "resume": {"chunk_size": 500, "chunk_overlap": 100},
     "research": {"chunk_size": 500, "chunk_overlap": 100},
 }

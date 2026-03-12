@@ -11,19 +11,26 @@ Everyone builds RAG apps. This one is **about me** — a personal resume assista
 ```
 Source PDFs --> Ingestion Pipeline --> ChromaDB Vector Store
                                             |
-User Query --> Embedding --> Semantic Search (top-k) --> Context Formatting --> Ollama LLM --> Answer
+                    ┌───────────────────────────────────────────┐
+User Query ──> BM25 Keyword Search ──┐                         │
+               Vector Semantic Search ┘──> RRF Fusion ──> Cross-Encoder Rerank ──> Ollama LLM ──> Answer
 ```
 
 ### Data Ingestion
-- **PDF Loading** — PyPDFLoader extracts text from source PDFs (GitHub profile, LinkedIn profile, research papers)
-- **Chunking** — RecursiveCharacterTextSplitter (500 chars, 100 overlap) breaks documents into manageable pieces
+- **PDF Loading** — PyPDFLoader extracts text from source PDFs (GitHub profile, LinkedIn profile, resume, research papers)
+- **Per-type Chunking** — Profile docs use 1000-char chunks to preserve structured sections (e.g. Featured Repos); resume and research docs use 500-char chunks with 100 overlap
 - **Metadata Enrichment** — Each chunk is tagged with source file, page number, document type, and chunk index
-- **Vector Store** — Chunks are embedded and persisted in ChromaDB for fast retrieval
+- **Hypothetical Questions (HyDE)** — For profile documents, Ollama generates 3 hypothetical questions per chunk at ingestion time. These are prepended to the chunk content before embedding, bridging the query-document gap (user questions match better against question-enriched embeddings)
+- **Vector Store** — Chunks are embedded using `all-MiniLM-L6-v2` (384 dims) and persisted in ChromaDB
 
-### Search Methodology
-- **Vector-based Semantic Search** — Queries and documents are embedded into 384-dimensional vectors using `all-MiniLM-L6-v2` (sentence-transformers). At query time, ChromaDB performs cosine similarity search to find the top-k most relevant chunks. This means searches are meaning-based, not keyword-based — a query like "programming languages" will match chunks mentioning "Python, JavaScript" even without exact word overlap.
-- **Top-k Retrieval** — Returns the 4 most relevant chunks by default (configurable)
-- **Source Attribution** — Each retrieved chunk carries its source file and page number for traceability
+### Search Methodology: Hybrid Retrieval
+
+The retrieval pipeline combines keyword and semantic search for best-of-both-worlds results:
+
+1. **BM25 Keyword Search** — Ranks all chunks by keyword relevance using BM25Okapi with stopword removal. Excels at exact term matches: company names ("Amazon"), technical acronyms ("CRC"), version numbers ("Python 3.10")
+2. **Vector Semantic Search** — ChromaDB cosine similarity over 384-dim embeddings. Excels at meaning-based matching: "DevOps automation" finds chunks about "CI/CD pipelines" even without keyword overlap
+3. **Reciprocal Rank Fusion (RRF)** — Merges the top-10 results from both BM25 and vector search into a single ranked list. Documents appearing in both lists get boosted scores
+4. **Cross-Encoder Reranking** — The fused candidates are re-scored by a cached cross-encoder model (`cross-encoder/ms-marco-MiniLM-L-6-v2`) that reads each (query, chunk) pair jointly for precise relevance scoring. The model is loaded once and reused across queries for low latency. Returns the final top-5 results
 
 ### Generation
 - **Ollama (local LLM)** — Uses `llama3.2` running locally via Ollama for answer generation
@@ -35,10 +42,11 @@ User Query --> Embedding --> Semantic Search (top-k) --> Context Formatting --> 
 - **Python 3** — Core language
 - **LangChain** — Document loading, text splitting, embeddings interface, retriever abstraction
 - **ChromaDB** — Vector store with local file persistence
-- **HuggingFace sentence-transformers** — Embeddings (all-MiniLM-L6-v2, 384 dims)
+- **HuggingFace sentence-transformers** — Embeddings (all-MiniLM-L6-v2) and cross-encoder reranking (ms-marco-MiniLM-L-6-v2)
+- **rank-bm25** — BM25Okapi keyword retrieval
 - **Ollama + langchain-ollama** — Local LLM inference (llama3.2)
 - **pypdf / fpdf2** — PDF parsing and generation
-- **pytest** — Test suite (37 tests, all using fake embeddings — no external deps needed)
+- **pytest** — Test suite (63 tests, all using fake embeddings and mocks — no external deps needed)
 
 ## Getting Started
 
@@ -69,9 +77,10 @@ python -m retrieval.rag_chain "What are your key skills?"
 - [x] Data sourcing (GitHub API to PDF, source validation)
 - [x] Resume data ingestion pipeline
 - [x] Vector store integration (ChromaDB)
-- [x] Retrieval pipeline (semantic search)
+- [x] Retrieval pipeline (hybrid: BM25 + vector search)
 - [x] LLM-powered answer generation (Ollama)
-- [ ] Reranking (optional, to improve retrieval precision)
+- [x] Cross-encoder reranking (ms-marco-MiniLM-L-6-v2)
+- [x] Hypothetical question enrichment (HyDE) for profile docs
 - [ ] Chat UI
 - [ ] Deployment and observability
 - [ ] Evaluation and testing suite

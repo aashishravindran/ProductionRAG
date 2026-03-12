@@ -27,3 +27,7 @@ Added retrieval and generation module using Ollama (ChatOllama) for the RAG pipe
 ## Session: 2026-03-09 (retrieval quality)
 
 Improved retrieval quality by adding per-document-type chunk sizes, hypothetical question generation for profile chunks at ingestion time, and using original content in LLM context. "Featured Repositories" query went from not-in-top-10 to rank 1; store reduced from 636 duplicate chunks to 153 unique.
+
+## Session: 2026-03-11
+
+Replaced pure vector search with a hybrid retrieval pipeline: BM25 keyword search + vector semantic search, merged via Reciprocal Rank Fusion, then re-scored with a cached cross-encoder reranker. Added stopword removal to BM25 tokenizer to fix irrelevant results on common-word queries. Added Resume.pdf as a new source document. 63 tests passing.

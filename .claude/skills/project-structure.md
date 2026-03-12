@@ -1,7 +1,7 @@
 # ProductionRAG -- Project Structure
 
 > Single source of truth for project layout, tech stack, and conventions.
-> Last updated: 2026-03-09 (retrieval quality session)
+> Last updated: 2026-03-11 (hybrid retrieval session)
 
 ## Overview
 A production-ready RAG application that turns a personal resume into an interactive chat interface, grounded in real data sources (GitHub profile, LinkedIn profile, supplementary PDFs).
@@ -21,11 +21,12 @@ ProductionRAG/
     data/                   -- Source PDF files (tracked in git)
       github_profile.pdf
       linkedin_profile.pdf
+      Resume.pdf
       Gen_ai_divide.pdf
-  retrieval/                -- Retrieval + generation module (Ollama)
-    __init__.py             -- Public API exports (ask, retrieve, generate)
-    config.py               -- Ollama model config, top_k, prompt templates
-    retriever.py            -- ChromaDB retrieval (get_retriever, retrieve)
+  retrieval/                -- Retrieval + generation module (hybrid search + Ollama)
+    __init__.py             -- Public API exports (ask, retrieve, bm25_search, vector_search, rrf, rerank)
+    config.py               -- Ollama model config, retrieval top_k, BM25/vector top_k, reranker model, prompts
+    retriever.py            -- Hybrid retrieval: BM25 + vector search, RRF fusion, cross-encoder reranking
     generator.py            -- Ollama generation via ChatOllama (build_llm, format_context, generate)
     rag_chain.py            -- End-to-end orchestrator (ask -> {answer, sources})
   ingestion/                -- Data ingestion pipeline
@@ -45,9 +46,10 @@ ProductionRAG/
     test_metadata.py
     test_store.py
     test_pipeline.py
-    test_retriever.py       -- Retriever tests (5 tests)
-    test_generator.py       -- Generator tests (5 tests)
-    test_rag_chain.py       -- End-to-end RAG chain tests (2 tests)
+    test_retriever.py       -- Hybrid retriever + get_retriever tests
+    test_hybrid_retrieval.py -- BM25, RRF fusion, reranking, tokenizer tests
+    test_generator.py       -- Generator tests
+    test_rag_chain.py       -- End-to-end RAG chain tests
   .env.example              -- Env var template (GITHUB_TOKEN, GITHUB_USERNAME)
   .gitignore
   CLAUDE.md                 -- Project log (lean format)
@@ -64,16 +66,19 @@ ProductionRAG/
 - python-dotenv -- Environment config
 - LangChain ecosystem -- Document loading, text splitting, embeddings interface
 - ChromaDB -- Vector store (local persistence)
-- HuggingFace sentence-transformers -- Embeddings (all-MiniLM-L6-v2, 384 dims)
+- HuggingFace sentence-transformers -- Embeddings (all-MiniLM-L6-v2, 384 dims) and cross-encoder reranking (ms-marco-MiniLM-L-6-v2)
+- rank-bm25 -- BM25Okapi keyword retrieval
 - pypdf -- PDF parsing backend
 - langchain-ollama -- Ollama LLM integration (ChatOllama)
-- pytest -- Testing framework
+- pytest -- Testing framework (63 tests)
 
 ## Key Configuration
-- Chunk sizes: per-document-type (profile: 1000/200, research: 500/100)
+- Chunk sizes: per-document-type (profile: 1000/200, resume: 500/100, research: 500/100)
 - Embedding model: all-MiniLM-L6-v2 (384 dimensions)
 - Vector store: ChromaDB with local file persistence
-- Retrieval top_k: 5
+- Retrieval: hybrid (BM25 top-10 + vector top-10, RRF fusion, cross-encoder rerank to top-5)
+- Reranker: cross-encoder/ms-marco-MiniLM-L-6-v2 (cached via @lru_cache)
+- BM25 tokenizer: lowercase + stopword removal
 - Hypothetical question enrichment: 3 questions per profile chunk (Ollama-generated at ingestion)
 
 ## Conventions
@@ -89,8 +94,8 @@ ProductionRAG/
 Source PDFs --> loader.py --> chunker.py --> metadata.py --> questions.py --> store.py
                 (PyPDF)   (per-type split) (enrich meta) (HyDE questions)  (ChromaDB)
 
-Query --> retriever.py --> generator.py --> rag_chain.py --> {answer, sources}
-           (ChromaDB)      (ChatOllama)    (orchestrator)
+Query --> BM25 keyword search ──┐
+          Vector semantic search ┘──> RRF Fusion ──> Cross-Encoder Rerank ──> generator.py ──> Answer
 ```
 Ingestion orchestrated by `pipeline.py`; retrieval orchestrated by `rag_chain.py`.
 
@@ -98,9 +103,9 @@ Ingestion orchestrated by `pipeline.py`; retrieval orchestrated by `rag_chain.py
 - [x] Data sourcing (GitHub API to PDF, validation)
 - [x] Ingestion pipeline (load, chunk, enrich, store)
 - [x] Test suite for ingestion
-- [x] Retrieval pipeline (ChromaDB similarity search)
+- [x] Hybrid retrieval pipeline (BM25 + vector search, RRF fusion, cross-encoder reranking)
 - [x] LLM integration (Ollama via ChatOllama)
 - [x] RAG chain orchestrator (ask -> answer + sources)
-- [x] Test suite for retrieval + generation
+- [x] Test suite for retrieval + generation (63 tests total)
 - [ ] Chat interface / API layer
 - [ ] Data sourcing tests
