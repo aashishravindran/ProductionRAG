@@ -7,15 +7,13 @@ CHROMA_PERSIST_DIR = PROJECT_ROOT / "chroma_db"
 CHROMA_COLLECTION_NAME = "resume_documents"
 
 SOURCE_PDFS = {
-    "github_profile": DATA_DIR / "github_profile.pdf",
-    "linkedin_profile": DATA_DIR / "linkedin_profile.pdf",
+    "github_projects_detailed": DATA_DIR / "github_projects_detailed.pdf",
     "resume": DATA_DIR / "Resume.pdf",
     "Gen_ai_divide": DATA_DIR / "Gen_ai_divide.pdf",
 }
 
 DOCUMENT_TYPES = {
-    "github_profile": "profile",
-    "linkedin_profile": "profile",
+    "github_projects_detailed": "projects",
     "resume": "resume",
     "Gen_ai_divide": "research",
 }
@@ -23,10 +21,13 @@ DOCUMENT_TYPES = {
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 100
 
-# Per-document-type chunk sizes: profile docs are short and structured,
-# so larger chunks keep sections (e.g. Featured Repos) intact.
+# Per-document-type chunk sizes:
+# - projects: each project is a full page with rich sections, use large chunks
+#   to keep project descriptions, tech stacks, and features together.
+# - resume: moderate chunks for work experience bullet points.
+# - research: moderate chunks for paper content.
 CHUNK_SIZES_BY_TYPE = {
-    "profile": {"chunk_size": 1000, "chunk_overlap": 200},
-    "resume": {"chunk_size": 500, "chunk_overlap": 100},
-    "research": {"chunk_size": 500, "chunk_overlap": 100},
+    "projects": {"chunk_size": 1000, "chunk_overlap": 200},
+    "resume": {"chunk_size": 800, "chunk_overlap": 200},
+    "research": {"chunk_size": 1500, "chunk_overlap": 200},
 }

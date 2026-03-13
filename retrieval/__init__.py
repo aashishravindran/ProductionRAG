@@ -8,6 +8,7 @@ from .retriever import (
     rerank,
 )
 from .generator import build_llm, format_context, generate
+from .query_analyzer import analyze_query
 from .rag_chain import ask
 
 __all__ = [
@@ -20,5 +21,6 @@ __all__ = [
     "build_llm",
     "format_context",
     "generate",
+    "analyze_query",
     "ask",
 ]

@@ -1,7 +1,7 @@
 # ProductionRAG -- Development Log
 
 ## Project Overview
-A production-ready RAG application that turns a personal resume into an interactive chat interface, grounded in real data sources (GitHub profile, LinkedIn profile, supplementary PDFs).
+A production-ready RAG application that turns a personal resume into an interactive chat interface, grounded in real data sources (detailed GitHub project descriptions, resume, and supplementary PDFs).
 
 For detailed project structure, tech stack, and conventions see: `.claude/skills/project-structure.md`
 
@@ -31,3 +31,7 @@ Improved retrieval quality by adding per-document-type chunk sizes, hypothetical
 ## Session: 2026-03-11
 
 Replaced pure vector search with a hybrid retrieval pipeline: BM25 keyword search + vector semantic search, merged via Reciprocal Rank Fusion, then re-scored with a cached cross-encoder reranker. Added stopword removal to BM25 tokenizer to fix irrelevant results on common-word queries. Added Resume.pdf as a new source document. 63 tests passing.
+
+## Session: 2026-03-12
+
+Added LLM-powered query analyzer for pre-retrieval metadata filtering, replaced old profile sources with detailed github_projects_detailed.pdf, and rewrote metadata enrichment with source-specific fields (project details, resume section detection). Tuned chunk sizes for resume and research docs. 89 tests passing.

@@ -39,14 +39,14 @@ def enrich_with_questions(
     Args:
         chunks: All chunks from the pipeline.
         doc_types: Only enrich chunks whose document_type is in this set.
-            Defaults to {"profile"} (GitHub/LinkedIn docs).
+            Defaults to {"projects"} (GitHub projects detailed doc).
 
     For matching chunks:
     - Stores original content in metadata["original_content"]
     - Stores generated questions in metadata["hypothetical_questions"]
     - Prepends questions to page_content so embeddings capture question-intent
     """
-    target_types = doc_types or {"profile"}
+    target_types = doc_types or {"projects"}
     target_chunks = [c for c in chunks if c.metadata.get("document_type") in target_types]
 
     if not target_chunks:

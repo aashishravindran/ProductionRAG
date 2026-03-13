@@ -15,8 +15,9 @@ def ask(
     top_k: int = RETRIEVAL_TOP_K,
     model: str = OLLAMA_MODEL,
     base_url: str = OLLAMA_BASE_URL,
+    skip_analysis: bool = False,
 ) -> dict:
-    """Run the full RAG pipeline: retrieve relevant chunks, then generate an answer.
+    """Run the full RAG pipeline: analyze query, retrieve relevant chunks, generate answer.
 
     Returns dict with keys: answer, sources (list of retrieved Documents).
     """
@@ -26,6 +27,7 @@ def ask(
         persist_directory=persist_directory,
         collection_name=collection_name,
         top_k=top_k,
+        skip_analysis=skip_analysis,
     )
 
     answer = generate(

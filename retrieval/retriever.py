@@ -58,15 +58,24 @@ def vector_search(
     persist_directory=None,
     collection_name: str = CHROMA_COLLECTION_NAME,
     top_k: int = VECTOR_TOP_K,
+    metadata_filter: dict | None = None,
 ) -> list[Document]:
-    """Retrieve documents by vector similarity from ChromaDB."""
+    """Retrieve documents by vector similarity from ChromaDB.
+
+    Args:
+        metadata_filter: ChromaDB where clause, e.g.
+            {"document_type": {"$in": ["resume", "projects"]}}
+    """
     persist_dir = persist_directory or CHROMA_PERSIST_DIR
     store = load_vector_store(
         embedding_function=embedding_function,
         persist_directory=persist_dir,
         collection_name=collection_name,
     )
-    return store.similarity_search(query, k=top_k)
+    kwargs = {"k": top_k}
+    if metadata_filter:
+        kwargs["filter"] = metadata_filter
+    return store.similarity_search(query, **kwargs)
 
 
 # ---------------------------------------------------------------------------
@@ -153,14 +162,43 @@ def _load_all_chunks(
     ]
 
 
+def _build_metadata_filter(analysis: dict) -> dict | None:
+    """Convert query analysis into a ChromaDB where clause."""
+    conditions = []
+
+    doc_types = analysis.get("doc_types")
+    if doc_types:
+        conditions.append({"document_type": {"$in": doc_types}})
+
+    resume_section = analysis.get("resume_section")
+    if resume_section:
+        conditions.append({"resume_section": resume_section})
+
+    project_name = analysis.get("project_name")
+    if project_name:
+        conditions.append({"project_name": project_name})
+
+    if not conditions:
+        return None
+    if len(conditions) == 1:
+        return conditions[0]
+    return {"$and": conditions}
+
+
 def retrieve(
     query: str,
     embedding_function: Embeddings | None = None,
     persist_directory=None,
     collection_name: str = CHROMA_COLLECTION_NAME,
     top_k: int = RETRIEVAL_TOP_K,
+    skip_analysis: bool = False,
 ) -> list[Document]:
-    """Hybrid retrieve: BM25 + vector search, RRF fusion, cross-encoder rerank."""
+    """Hybrid retrieve: query analysis, BM25 + vector search, RRF fusion, cross-encoder rerank.
+
+    Args:
+        skip_analysis: If True, skip LLM query analysis and search all docs.
+            Useful for tests or when filters are not needed.
+    """
     if embedding_function is None:
         from langchain_huggingface import HuggingFaceEmbeddings
 
@@ -168,26 +206,44 @@ def retrieve(
             model_name="sentence-transformers/all-MiniLM-L6-v2"
         )
 
-    # Load all chunks for BM25
+    # Step 1: Analyze query to determine doc type filters
+    analysis = {}
+    metadata_filter = None
+    if not skip_analysis:
+        from .query_analyzer import analyze_query
+
+        analysis = analyze_query(query)
+        metadata_filter = _build_metadata_filter(analysis)
+
+    # Step 2: Load all chunks for BM25 (filtered by doc type)
     all_chunks = _load_all_chunks(
         embedding_function=embedding_function,
         persist_directory=persist_directory,
         collection_name=collection_name,
     )
 
-    # Run both retrievers
+    # Apply doc_type filter to BM25 candidate pool
+    doc_types = analysis.get("doc_types")
+    if doc_types:
+        all_chunks = [
+            c for c in all_chunks
+            if c.metadata.get("document_type") in doc_types
+        ]
+
+    # Step 3: Run both retrievers
     bm25_results = bm25_search(query, all_chunks)
     vector_results = vector_search(
         query,
         embedding_function=embedding_function,
         persist_directory=persist_directory,
         collection_name=collection_name,
+        metadata_filter=metadata_filter,
     )
 
-    # Fuse with RRF
+    # Step 4: Fuse with RRF
     fused = reciprocal_rank_fusion(bm25_results, vector_results)
 
-    # Rerank with cross-encoder
+    # Step 5: Rerank with cross-encoder
     return rerank(query, fused, top_k=top_k)
 
 

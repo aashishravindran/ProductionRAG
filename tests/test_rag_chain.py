@@ -18,6 +18,7 @@ class TestAsk:
             embedding_function=fake_embeddings,
             persist_directory=populated_store["persist_dir"],
             collection_name=populated_store["collection_name"],
+            skip_analysis=True,
         )
 
         assert "answer" in result
@@ -40,6 +41,7 @@ class TestAsk:
             embedding_function=fake_embeddings,
             persist_directory=populated_store["persist_dir"],
             collection_name=populated_store["collection_name"],
+            skip_analysis=True,
         )
 
         mock_generate.assert_called_once()
