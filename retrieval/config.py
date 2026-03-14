@@ -7,7 +7,7 @@ OLLAMA_BASE_URL = "http://localhost:11434"
 # Retrieval settings
 RETRIEVAL_TOP_K = 5
 BM25_TOP_K = 10  # BM25 candidates before fusion
-VECTOR_TOP_K = 10  # Vector candidates before fusion
+VECTOR_TOP_K = 15  # Vector candidates before fusion
 RRF_K = 60  # RRF constant (standard default)
 
 # Cross-encoder reranker

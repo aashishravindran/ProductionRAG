@@ -1,0 +1,254 @@
+[
+  {
+    "question": "By what percentage did the Scalable Dataplane reduce onboarding time for Service Teams to Service Quotas?",
+    "ground_truth_context": "Reduced onboarding time to Service Quotas for Service Teams 80% by building a Scalable Dataplane using DynamoDB as a backend data store.",
+    "answer": "The Scalable Dataplane reduced onboarding time for Service Teams by 80%.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What database was chosen as the backend for the Scalable Dataplane, and what design principles guided that choice?",
+    "ground_truth_context": "Reduced onboarding time to Service Quotas for Service Teams 80% by building a Scalable Dataplane using DynamoDB as a backend data store. The solution considers scalability and latency and exemplifies AWS best practices.",
+    "answer": "DynamoDB was selected as the backend data store because the solution prioritizes scalability and latency while exemplifying AWS best practices.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What accuracy did the Knowledge Base RAG system built using Amazon Bedrock achieve?",
+    "ground_truth_context": "Architected the team's first AI agents using Amazon Bedrock and RAG (Retrieval-Augmented Generation); established a high-precision Knowledge Base system achieving 80% accuracy in automated responses by using Bedrock's APIs.",
+    "answer": "The Knowledge Base RAG system using Amazon Bedrock achieved 80% accuracy in automated responses.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What AWS services powered the quota automation framework, and what was the measurable business outcome?",
+    "ground_truth_context": "Developed APIs robust quota automation framework, using AWS Lambda and AWS SNS which resulted in automated quota approval based on rules defined by service teams resulting in 30% reduction in AWS Support Cases.",
+    "answer": "The framework used AWS Lambda and AWS SNS for automated quota approval based on service team-defined rules, resulting in a 30% reduction in AWS Support Cases.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What was the latency SLA achieved by the asynchronous quota utilization reporting APIs, and for what percentage of accounts?",
+    "ground_truth_context": "Spearheaded the end-to-end delivery of asynchronous APIs for automated quota utilization reporting, achieving high-performance analysis (<2s) for 99% of accounts.",
+    "answer": "The asynchronous APIs achieved sub-2-second high-performance analysis for 99% of all accounts.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "Which AWS leadership principle did Aashish implement while mentoring interns, and what was the outcome for those interns?",
+    "ground_truth_context": "Implemented AWS's Hire and Develop The Best leadership principal and mentored 3 successful interns for 100% return offer.",
+    "answer": "Aashish implemented the 'Hire and Develop The Best' leadership principle, mentoring 3 interns all of whom received 100% return offers.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What was the purpose of the inaugural MCP server built by Aashish at AWS, and what operational improvement resulted?",
+    "ground_truth_context": "Built the team's inaugural Model Context Protocol (MCP) server, to streamline log analysis using AWS CloudWatch, which resulted in a 25% reduction in ops pain.",
+    "answer": "The inaugural MCP server was built to streamline log analysis using AWS CloudWatch, resulting in a 25% reduction in operational pain.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What specific legacy bug was fixed at AWS SDE I, and what was the quantified operational impact of the fix?",
+    "ground_truth_context": "Identified and fixed a bug in a legacy component causing notifications to be sent to the incorrect team, thus reducing operations pain by 20%.",
+    "answer": "A bug was fixed in a legacy component that routed notifications to the wrong team, which reduced operations pain by 20%.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "In what capacity did Aashish improve CI/CD deployment safety, and by how much did rollbacks decrease?",
+    "ground_truth_context": "Identified and Enforced AWS best practices for deployment safety in CI/CD pipelines as a Change management Bar Raiser resulting in 15% fewer rollbacks in deployments.",
+    "answer": "As a Change Management Bar Raiser, Aashish enforced AWS best practices for CI/CD deployment safety, resulting in 15% fewer deployment rollbacks.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "How many years of experience does Aashish Ravindran have, and what are the three flagship project names cited in his professional summary?",
+    "ground_truth_context": "Impact focused software engineer with 7+ years of experience delivering projects like 'Scalable Data Plane', 'Context Based Quotas' and 'Region Build Automation' using scalable technologies like NoSQL, Serverless and Monitoring, Bedrock, AI Agents and RAG.",
+    "answer": "Aashish has 7+ years of experience. The three flagship projects are 'Scalable Data Plane', 'Context Based Quotas', and 'Region Build Automation'.",
+    "document_source": "Resume.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "According to the MIT NANDA GenAI Divide report, what percentage of organizations receive zero return on their GenAI investment?",
+    "ground_truth_context": "95% of orgs get zero return on GenAI despite $30–40B investment",
+    "answer": "95% of organizations receive zero return on their GenAI investment, despite a $30–40 billion industry-wide investment.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What is the production deployment rate for task-specific GenAI tools, according to the GenAI Divide report?",
+    "ground_truth_context": "only 5% of task-specific GenAI tools reach production",
+    "answer": "Only 5% of task-specific GenAI tools successfully reach production deployment.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What are the four defining patterns of the 'GenAI Divide' identified in the MIT NANDA report?",
+    "ground_truth_context": "four patterns define the divide (limited disruption, enterprise paradox, investment bias, implementation advantage)",
+    "answer": "The four patterns are: (1) Limited Disruption, (2) Enterprise Paradox, (3) Investment Bias, and (4) Implementation Advantage.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What is the 'shadow AI economy' as described in the GenAI Divide report, and what statistics illustrate the gap between official and unofficial AI usage?",
+    "ground_truth_context": "the shadow AI economy (90% of workers use personal AI despite only 40% having official subscriptions)",
+    "answer": "The shadow AI economy refers to widespread unofficial use of personal AI tools. 90% of workers use personal AI tools even though only 40% have official enterprise AI subscriptions, indicating that sanctioned enterprise tools fail to satisfy worker needs.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "Describe the 'pilot-to-production chasm' — what percentage of companies make it through each stage of the GenAI adoption funnel?",
+    "ground_truth_context": "3.2 THE PILOT-TO-PRODUCTION CHASM Takeaway: The GenAI Divide is starkest in deployment rates, only 5% of custom enterprise AI tools reach production. Chatbots succeed because they're easy to try and flexible, but fail in critical workflows due to lack of memory and customization.",
+    "answer": "The pilot-to-production chasm describes the sharp drop-off in GenAI adoption: 60% of companies investigate custom tools, only 20% proceed to pilot, and just 5% reach full production deployment.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "How do external AI partnerships compare to internal builds in terms of reaching production deployment, per the GenAI Divide report?",
+    "ground_truth_context": "External partnerships reach deployment 67% of the time vs 33% for internal builds",
+    "answer": "External AI partnerships reach production deployment 67% of the time versus only 33% for internal builds — making external partnerships twice as likely to ship to production.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What are the three winning behaviors that the GenAI Divide report recommends for successful AI-buying organizations?",
+    "ground_truth_context": "Organizations that successfully cross the GenAI Divide do three things differently: they buy rather than build, empower line managers rather than central labs, and select tools that integrate deeply while adapting over time.",
+    "answer": "The three winning behaviors are: (1) Buy rather than build AI solutions, (2) Empower line managers over central AI labs, and (3) Select deeply integrating, adaptive tools.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Synthesized"
+  },
+  {
+    "question": "What workforce reduction does the GenAI Divide report predict, and in which specific sectors and job categories is it concentrated?",
+    "ground_truth_context": "5–20% workforce reduction concentrated in outsourced customer support/admin roles in tech and media",
+    "answer": "The report predicts a 5–20% workforce reduction, specifically concentrated in outsourced customer support and administrative roles within the tech and media sectors.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "The GenAI Divide report warns of an '18-month window' — what does this refer to and why is it significant for enterprise buyers?",
+    "ground_truth_context": "5.3 THE NARROWING WINDOW TO CROSS THE DIVIDE Takeaway: The window for crossing the GenAI Divide is rapidly closing. Enterprises are locking in learning-capable tools. Agentic AI and memory frameworks (like NANDA and MCP) will define which vendors help organizations cross the divide versus remain trapped on the wrong side.",
+    "answer": "The 18-month window is the critical period before enterprises cement their AI vendor commitments. Once this window closes, switching costs rise dramatically, making strategic vendor selection urgently time-sensitive.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What research methodology did the MIT NANDA authors use for the GenAI Divide study, and how many data points were collected across each method?",
+    "ground_truth_context": "Methodology (52 interviews, 300+ public AI initiatives, 153 survey responses)",
+    "answer": "The methodology included 52 executive/functional leader interviews, analysis of 300+ public AI initiatives, and 153 survey responses.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What is the total number of repositories documented in Aashish Ravindran's GitHub Projects reference document, and on what date was it generated?",
+    "ground_truth_context": "Aashish Ravindran\nGitHub Projects -- Detailed Reference\ngithub.com/aashishravindran\nThis document is optimised for RAG (Retrieval-Augmented Generation) ingestion.\nEach repository section contains a rich description, full tech stack, key features,\nand architectural context to support high-quality semantic retrieval.\nGenerated: 2026-03-12  |  13 repositories",
+    "answer": "The document covers 13 repositories and was generated on 2026-03-12.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Easy",
+    "reasoning_type": "Direct"
+  },
+  {
+    "question": "What hybrid retrieval strategy does ProductionRAG use at query time, and which specific algorithms are combined?",
+    "ground_truth_context": "At query time it runs hybrid retrieval -- BM25 keyword search combined with semantic vector search -- merged via Reciprocal Rank Fusion (RRF). A cross-encoder reranker (ms-marco-MiniLM-L-6-v2) rescores the top candidates before a local Ollama LLM (llama3.2) generates the final grounded answer.",
+    "answer": "ProductionRAG uses hybrid retrieval combining BM25 keyword search with semantic vector search, merged via Reciprocal Rank Fusion (RRF). The top candidates are then rescored by a cross-encoder reranker (ms-marco-MiniLM-L-6-v2) before the llama3.2 LLM generates the final answer.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "How does the agentic-fitness-app model and track fatigue across workout sessions?",
+    "ground_truth_context": "Fatigue is tracked across sessions with a time-based decay model (3% per hour), RPE-based accumulation, and automatic rest-day recovery. All state is persisted in per-user SQLite databases.",
+    "answer": "Fatigue is tracked using a time-based decay model (3% per hour), RPE (Rate of Perceived Exertion)-based accumulation, and automatic rest-day recovery, with all per-user state persisted in SQLite databases.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "Which archived academic projects from Stony Brook University are listed in the GitHub projects document, and what language/domain does each use?",
+    "ground_truth_context": "ARCHIVED / ACADEMIC PROJECTS\n9. crc_analysis Network Analysis / Research\n10. PacketLossAnalysis Network Analysis / Research / Signal Processing\n11. video_quantification Video Processing / Signal Processing / Research\n12. PostureRecognition Machine Learning / Gesture Recognition / Research\n13. humanActivityRecognition Android / Mobile / Machine Learning / CPS",
+    "answer": "Five archived academic projects are listed: crc_analysis (Python, network CRC analysis), PacketLossAnalysis (Python, network packet loss), video_quantification (Python/OpenCV, video quality via SSIM), PostureRecognition (MATLAB, gesture/posture ML), and humanActivityRecognition (Kotlin/Android, on-device activity classification).",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Synthesized"
+  },
+  {
+    "question": "What is the steal-my-agents project, what are its two installation modes, and what is its flagship agent?",
+    "ground_truth_context": "Ships an interactive install.sh script that lets users choose global vs. per-project installation and install individual agents or all at once. The flagship agent is project-wrapup: an end-of-session agent that autonomously updates documentation, writes conventional-commit messages, commits, pushes to remote, and produces a clean session summary.",
+    "answer": "steal-my-agents is a curated collection of Claude Code sub-agents. It offers global or per-project installation modes via an interactive install.sh script. Its flagship agent, project-wrapup, autonomously updates documentation, writes conventional commit messages, commits, pushes to remote, and produces a session summary.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What video quality metric does the video_quantification project use to evaluate packet-loss-induced degradation, and what library computes it?",
+    "ground_truth_context": "Quantifies video quality degradation caused by packet loss in a VMAC (Video Multicast) system. Compares transmitted and received video frames at raw pixel level using SSIM (Structural Similarity Index Measure).",
+    "answer": "The project uses SSIM (Structural Similarity Index Measure) to quantify video quality degradation from packet loss in a VMAC system. SSIM computation is handled by scikit-image (skimage).",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What multi-agent pattern does the agentic-fitness-app use, and how does it route user requests to specialist coaches?",
+    "ground_truth_context": "A supervisor LangGraph agent analyses intent and delegates to the appropriate specialist agent (Iron for strength, Yoga, HIIT, or Kickboxing).",
+    "answer": "The agentic-fitness-app uses a LangGraph supervisor/worker multi-agent pattern. A supervisor agent analyses user intent and delegates to one of four specialist agents: Iron (strength training), Yoga, HIIT, or Kickboxing.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Medium",
+    "reasoning_type": "Multi-hop"
+  },
+  {
+    "question": "What AI framework is used for building MCP-integrated agents in the AiAgents project — is it LangGraph, Amazon Bedrock, or the Strands framework?",
+    "ground_truth_context": "A demonstration project for building AI agents using the Strands framework with Model Context Protocol (MCP) tool integration. Shows how to wire custom and built-in tools into an agent that answers multi-part queries through sequential tool invocations. Tech Stack: Python, Strands framework (AWS agent framework), Model Context Protocol (MCP).",
+    "answer": "The AiAgents project uses the Strands framework (an AWS agent framework) with Model Context Protocol (MCP) tool integration — not LangGraph or standalone Amazon Bedrock.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Direct",
+    "stress_test_note": "Hard Negative: The question lists LangGraph (used in agentic-fitness-app) and Amazon Bedrock (mentioned in Resume.pdf) as distractors. A confused retriever might surface those documents instead of the correct AiAgents entry."
+  },
+  {
+    "question": "The resume mentions a 25% ops pain reduction via an MCP server using CloudWatch. Which GitHub project demonstrates MCP tool integration, and what framework does it use — is it the same system?",
+    "ground_truth_context": "Resume.pdf: 'Built the team's inaugural Model Context Protocol (MCP) server, to streamline log analysis using AWS CloudWatch, which resulted in a 25% reduction in ops pain.' | github_projects_detailed.pdf AiAgents: 'A demonstration project for building AI agents using the Strands framework with Model Context Protocol (MCP) tool integration.'",
+    "answer": "No, they are different systems. The resume describes a production AWS CloudWatch MCP server (closed-source, internal). The AiAgents GitHub project is a separate educational demo using the Strands framework to illustrate MCP tool integration for multi-step queries.",
+    "document_source": "github_projects_detailed.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Synthesized",
+    "stress_test_note": "Hard Negative / Ambiguity: Both documents use the term 'MCP' and 'Model Context Protocol', but they refer to distinct systems. A RAG system without metadata filtering may conflate the production resume entry with the demo project."
+  },
+  {
+    "question": "The GenAI Divide paper states '5% deploy' for GenAI tools. Does this match the accuracy figure for the RAG system described in the resume, and what does each percentage actually refer to?",
+    "ground_truth_context": "transformation is rare. Only 5% of enterprises have AI tools integrated in workflows at scale and 7 of 9 sectors show no real structural change.",
+    "answer": "No, they refer to completely different metrics. The 5% in the GenAI Divide report is the industry-wide production deployment rate for enterprise AI tools. The 80% in the resume is the automated response accuracy of a specific Bedrock-based Knowledge Base RAG system. They are unrelated statistics from different contexts.",
+    "document_source": "Gen_ai_divide.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Synthesized",
+    "stress_test_note": "Hard Negative / Ambiguity: Both documents mention percentages in the context of AI/RAG systems. A retriever that does simple keyword matching on 'RAG accuracy percentage' may conflate the two, returning the wrong document or blending the answer incorrectly."
+  },
+  {
+    "question": "Across the resume and GitHub projects, how many distinct AI agent systems has Aashish built or contributed to, and what underlying frameworks do they use?",
+    "ground_truth_context": "Architected the team's first AI agents using Amazon Bedrock and RAG (Retrieval-Augmented Generation); established a high-precision Knowledge Base system achieving 80% accuracy in automated responses by using Bedrocks API's.",
+    "answer": "Across both sources, at least five distinct AI agent systems are documented: (1) Amazon Bedrock Knowledge Base RAG (resume, internal AWS), (2) MCP server for CloudWatch log analysis (resume, internal AWS), (3) ProductionRAG using LangChain + ChromaDB (GitHub), (4) agentic-fitness-app with LangGraph supervisor/worker agents (GitHub), (5) AiAgents demo using the Strands framework + MCP (GitHub), and (6) steal-my-agents Claude Code sub-agent collection (GitHub).",
+    "document_source": "Resume.pdf",
+    "difficulty": "Hard",
+    "reasoning_type": "Synthesized",
+    "stress_test_note": "Global/Cross-document: Requires synthesizing information across Resume.pdf and github_projects_detailed.pdf. Tests whether the RAG system can aggregate correctly without double-counting or missing entries."
+  }
+]

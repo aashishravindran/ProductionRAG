@@ -24,10 +24,13 @@ CHUNK_OVERLAP = 100
 # Per-document-type chunk sizes:
 # - projects: each project is a full page with rich sections, use large chunks
 #   to keep project descriptions, tech stacks, and features together.
-# - resume: moderate chunks for work experience bullet points.
-# - research: moderate chunks for paper content.
+# - resume: smaller chunks so individual bullet points stay isolated and
+#   retrieve cleanly without being diluted by surrounding bullets.
+# - research: small chunks so specific statistics and facts (e.g. "95% of
+#   orgs get zero return") are isolated rather than buried in a 1.5-page
+#   block, keeping each chunk's embedding tightly focused on one concept.
 CHUNK_SIZES_BY_TYPE = {
     "projects": {"chunk_size": 1000, "chunk_overlap": 200},
-    "resume": {"chunk_size": 800, "chunk_overlap": 200},
-    "research": {"chunk_size": 1500, "chunk_overlap": 200},
+    "resume": {"chunk_size": 250, "chunk_overlap": 50},
+    "research": {"chunk_size": 600, "chunk_overlap": 150},
 }

@@ -46,7 +46,7 @@ def enrich_with_questions(
     - Stores generated questions in metadata["hypothetical_questions"]
     - Prepends questions to page_content so embeddings capture question-intent
     """
-    target_types = doc_types or {"projects"}
+    target_types = doc_types or {"projects", "resume"}
     target_chunks = [c for c in chunks if c.metadata.get("document_type") in target_types]
 
     if not target_chunks:
