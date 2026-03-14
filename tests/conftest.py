@@ -62,12 +62,15 @@ def fake_embeddings():
 
 
 @pytest.fixture(autouse=True)
-def _clear_cross_encoder_cache():
-    """Clear the cached CrossEncoder between tests so mocks take effect."""
+def _clear_caches():
+    """Clear cached models between tests so mocks take effect."""
     from retrieval.retriever import _get_cross_encoder
+    import retrieval.query_analyzer as qa
     _get_cross_encoder.cache_clear()
+    qa._cached_prototypes = None
     yield
     _get_cross_encoder.cache_clear()
+    qa._cached_prototypes = None
 
 
 @pytest.fixture

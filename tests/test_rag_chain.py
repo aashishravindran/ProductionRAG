@@ -23,8 +23,10 @@ class TestAsk:
 
         assert "answer" in result
         assert "sources" in result
+        assert "response_time_ms" in result
         assert result["answer"] == "Mocked answer."
         assert len(result["sources"]) > 0
+        assert result["response_time_ms"] > 0
 
     @patch("retrieval.retriever.CrossEncoder")
     @patch("retrieval.rag_chain.generate")

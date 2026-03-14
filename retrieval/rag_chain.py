@@ -1,4 +1,6 @@
 """RAG chain: retrieve context then generate an answer."""
+import time
+
 from langchain_core.embeddings import Embeddings
 
 from ingestion.config import CHROMA_COLLECTION_NAME
@@ -19,8 +21,10 @@ def ask(
 ) -> dict:
     """Run the full RAG pipeline: analyze query, retrieve relevant chunks, generate answer.
 
-    Returns dict with keys: answer, sources (list of retrieved Documents).
+    Returns dict with keys: answer, sources, response_time_ms.
     """
+    t_start = time.perf_counter()
+
     documents = retrieve(
         query=query,
         embedding_function=embedding_function,
@@ -37,9 +41,12 @@ def ask(
         base_url=base_url,
     )
 
+    elapsed_ms = (time.perf_counter() - t_start) * 1000
+
     return {
         "answer": answer,
         "sources": documents,
+        "response_time_ms": round(elapsed_ms, 1),
     }
 
 
@@ -49,7 +56,7 @@ if __name__ == "__main__":
     query = " ".join(sys.argv[1:]) or "What are your key skills?"
     result = ask(query)
     print(f"\nAnswer:\n{result['answer']}")
-    print(f"\n--- Retrieved {len(result['sources'])} chunks ---")
+    print(f"\n--- Retrieved {len(result['sources'])} chunks in {result['response_time_ms']}ms ---")
     for doc in result["sources"]:
         src = doc.metadata.get("source_file", "?")
         print(f"  - {src} (page {doc.metadata.get('page', '?')})")

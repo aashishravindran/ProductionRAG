@@ -212,7 +212,7 @@ def retrieve(
     if not skip_analysis:
         from .query_analyzer import analyze_query
 
-        analysis = analyze_query(query)
+        analysis = analyze_query(query, embeddings=embedding_function)
         metadata_filter = _build_metadata_filter(analysis)
 
     # Step 2: Load all chunks for BM25 (filtered by doc type)
