@@ -349,53 +349,97 @@ The ms-marco model is specifically trained on passage reranking, making it well-
 
 ## 9. Evaluation Results
 
-### 9.1 Retrieval Quality (Context Recall, no Ollama required)
+All metrics collected 2026-03-13. ChromaDB: 177 chunks (31 projects, 24 resume, 122 research). LLM: llama3.2:latest via Ollama on CPU.
 
-Run: `pytest tests/evaluation/ -m retrieval -q`
+Thresholds: context_recall ≥ 0.55 · answer_similarity ≥ 0.50 · rouge_l ≥ 0.12 · faithfulness ≥ 0.40 · latency ≤ budget (Easy 20 s, Medium 25 s, Hard 35 s).
 
-| Slice | N | Avg Context Recall |
+### 9.1 Aggregate Summary
+
+| Slice | N | CtxRecall | AnswerSim | ROUGE-L | Faithful |
+|---|---|---|---|---|---|
+| **Overall** | **30** | **0.770** | **0.748** | **0.298** | **0.644** |
+| Resume.pdf | 11 | 0.819 | 0.780 | 0.343 | 0.624 |
+| github_projects_detailed.pdf | 9 | 0.767 | 0.836 | 0.368 | 0.766 |
+| Gen_ai_divide.pdf | 10 | 0.719 | 0.638 | 0.193 | 0.555 |
+| Easy | 9 | 0.792 | 0.810 | 0.428 | 0.672 |
+| Medium | 13 | 0.777 | 0.744 | 0.272 | 0.618 |
+| Hard | 8 | 0.735 | 0.681 | 0.218 | 0.641 |
+
+Retrieval suite: **30/30 pass**, 1 xfailed.
+E2E suite: **14/31 pass all**, 8 latency-only failures (quality fine), 9 quality failures, 1 xfailed.
+
+### 9.2 Per-Question Results
+
+`CtxR` = context recall (retrieval suite) · `Sim` = answer similarity · `Rou` = ROUGE-L · `Fai` = faithfulness · `Lat` = latency (e2e suite). Failing metrics shown in **bold**.
+
+#### Resume.pdf
+
+| Status | Diff | CtxR | Sim | Rou | Fai | Lat | Question |
+|---|---|---|---|---|---|---|---|
+| PASS | Easy | 0.829 | 0.778 | 0.621 | 0.636 | 13 s | By what percentage did the Scalable Dataplane reduce onboarding time? |
+| PASS | Easy | 0.802 | 0.790 | 0.421 | 0.692 | 10 s | What accuracy did the Knowledge Base RAG system achieve? |
+| PASS | Easy | 0.839 | 0.913 | 0.600 | 0.600 | 9 s | What latency SLA did the async quota utilization APIs achieve? |
+| PASS | Easy | 0.738 | 0.735 | 0.282 | 0.667 | 13 s | What was the purpose of the inaugural MCP server? |
+| PASS | Easy | 0.868 | 0.738 | 0.265 | 0.750 | 11 s | How many years of experience does Aashish Ravindran have? |
+| FAIL | Medium | 0.771 | 0.621 | **0.085** | **0.176** | 10 s | What database was chosen for the Scalable Dataplane? |
+| PASS | Medium | 0.972 | 0.744 | 0.217 | 0.559 | 14 s | What AWS services powered the quota automation framework? |
+| PASS | Medium | 0.724 | 0.783 | 0.327 | 0.667 | 10 s | Which AWS leadership principle did Aashish implement? |
+| PASS | Medium | 0.725 | 0.658 | 0.286 | 0.536 | 18 s | What legacy bug was fixed at AWS SDE I? |
+| PASS | Medium | 0.942 | 0.924 | 0.340 | 0.778 | 13 s | How did Aashish improve CI/CD deployment safety? |
+| XFAIL | Hard | 0.798 | 0.640 | 0.060 | 0.431 | 53 s | How many distinct AI agent systems across resume + GitHub? *(cross-doc synthesis)* |
+
+#### Gen_ai_divide.pdf
+
+| Status | Diff | CtxR | Sim | Rou | Fai | Lat | Question |
+|---|---|---|---|---|---|---|---|
+| PASS | Easy | 0.680 | 0.955 | 0.562 | 0.600 | 9 s | What percentage of orgs get zero return on GenAI? |
+| FAIL | Easy | 0.692 | 0.780 | **0.107** | 0.571 | 15 s | What is the production deployment rate for task-specific GenAI tools? |
+| FAIL | Easy | 0.681 | 0.639 | **0.092** | 0.836 | **39 s** | What research methodology did the MIT NANDA authors use? |
+| PASS | Medium | 0.623 | 0.545 | 0.216 | 0.921 | 16 s | What are the four defining patterns of the GenAI Divide? |
+| FAIL | Medium | 0.771 | 0.825 | **0.147** | 0.758 | **58 s** | What is the shadow AI economy? *(latency only)* |
+| FAIL | Medium | 0.885 | 0.589 | **0.105** | **0.273** | **51 s** | Describe the pilot-to-production chasm and funnel percentages |
+| FAIL | Medium | 0.694 | 0.851 | 0.204 | 0.804 | **28 s** | How do external partnerships compare to internal builds? *(latency only)* |
+| PASS | Hard | 0.760 | 0.757 | 0.143 | 0.556 | 34 s | What are the three winning behaviors for AI-buying orgs? |
+| FAIL | Hard | 0.561 | **0.435** | 0.209 | 0.727 | 24 s | What workforce reduction does the GenAI Divide predict? |
+| FAIL | Hard | 0.848 | **0.445** | 0.141 | **0.391** | 23 s | What does the 18-month window refer to? |
+| XFAIL | Hard | — | 0.712 | 0.156 | **0.200** | **53 s** | Does the GenAI 5% deploy match the resume RAG accuracy? *(cross-doc hard negative)* |
+
+#### github_projects_detailed.pdf
+
+| Status | Diff | CtxR | Sim | Rou | Fai | Lat | Question |
+|---|---|---|---|---|---|---|---|
+| PASS | Easy | 1.000 | 0.760 | 0.370 | 0.778 | 15 s | Total repositories and generation date? |
+| PASS | Hard | 0.705 | 0.777 | 0.300 | 0.724 | **38 s** | What hybrid retrieval strategy does ProductionRAG use? *(latency only)* |
+| FAIL | Hard | 0.571 | 0.838 | 0.278 | 0.707 | **47 s** | How does agentic-fitness-app track fatigue? *(latency only)* |
+| PASS | Hard | 0.874 | 0.846 | 0.320 | 0.767 | 33 s | What AI framework does AiAgents use? |
+| XFAIL | Hard | 0.760 | 0.465 | 0.195 | 0.348 | 34 s | MCP server on resume vs. MCP demo in GitHub — same system? *(cross-doc ambiguity)* |
+| FAIL | Medium | 0.699 | 0.844 | 0.191 | 0.875 | **36 s** | Which archived academic projects are listed? *(latency only)* |
+| FAIL | Medium | 0.751 | 0.861 | 0.557 | 0.861 | **49 s** | What is steal-my-agents and its two installation modes? *(latency only)* |
+| FAIL | Medium | 0.856 | 0.866 | 0.421 | 0.667 | **33 s** | What video quality metric does video_quantification use? *(latency only)* |
+| FAIL | Medium | 0.690 | 0.964 | 0.576 | 0.913 | **52 s** | What multi-agent pattern does agentic-fitness-app use? *(latency only)* |
+
+### 9.3 Failure Analysis
+
+**Latency-only failures (8)** — all quality metrics pass; llama3.2 on CPU is the bottleneck:
+
+All 8 have answer_similarity ≥ 0.777, ROUGE-L ≥ 0.143, faithfulness ≥ 0.556. Upgrading to GPU or a faster model (e.g. llama3.2:1b) resolves these without touching the retrieval pipeline.
+
+**Quality failures (9):**
+
+| Question | Failing Metrics | Root Cause |
 |---|---|---|
-| **Overall** | 30 | **0.770** |
-| Resume.pdf | 11 | 0.819 |
-| github_projects_detailed.pdf | 9 | 0.767 |
-| Gen_ai_divide.pdf | 10 | 0.719 |
-| Easy | 9 | 0.792 |
-| Medium | 13 | 0.777 |
-| Hard | 8 | 0.735 |
-| Direct | 12 | 0.779 |
-| Multi-hop | 14 | 0.767 |
-| Synthesized | 4 | 0.754 |
-
-**30/30 pass** (≥ 0.55 threshold). 1 xfailed (cross-doc hard negative).
-
-### 9.2 End-to-End Quality (Ollama, llama3.2:latest on CPU)
-
-Run: `pytest tests/evaluation/ -m e2e -q`
-
-| Category | Count | Notes |
-|---|---|---|
-| Pass all metrics | 14 | Quality and latency both satisfied |
-| Latency-only failures | 8 | Answer quality fine; llama3.2 on CPU exceeds budget |
-| Quality failures | 9 | Answer similarity, ROUGE-L, or faithfulness below threshold |
-
-**Quality failures breakdown (by root cause):**
-
-| Question | Issue | Root Cause |
-|---|---|---|
-| DynamoDB backend | ROUGE-L 0.085, faithfulness 0.176 | LLM answer too verbose relative to short GT |
-| Production deployment rate | ROUGE-L 0.107 | Minor phrasing divergence; borderline pass |
-| Pilot-to-production chasm | ROUGE-L 0.105, faithfulness 0.273 | LLM not quoting the specific funnel percentages |
-| Workforce reduction | Answer similarity 0.435 | LLM gives a partial answer lacking sector specifics |
-| 18-month window | Answer similarity 0.445 | Retrieved section header lacks the specific 18-month timeframe |
-| Research methodology | ROUGE-L 0.092 | LLM paraphrases instead of quoting counts (52 interviews, 153 surveys) |
-| MCP cross-doc | Answer similarity 0.465, faithfulness 0.348 | Cross-doc synthesis; retriever surfaces resume but not GitHub context |
-| 5% deploy (xfail) | Faithfulness 0.200 | Intentional hard negative |
-| Cross-doc AI agents | ROUGE-L 0.060 | Requires counting agents across 2 docs; LLM format mismatches GT |
-
-**Latency-only failures are infrastructure-bound**, not quality-bound. All 8 have answer similarity ≥ 0.77, ROUGE-L ≥ 0.19, faithfulness ≥ 0.67 — significantly above thresholds. Upgrading to GPU inference or a faster local model would resolve these.
+| DynamoDB backend (resume) | ROUGE-L 0.085, faithfulness 0.176 | LLM answer verbose; low lexical overlap with short GT answer |
+| Production deployment rate | ROUGE-L 0.107 | Borderline; LLM paraphrases "5%" without exact phrasing |
+| Research methodology | ROUGE-L 0.092 | LLM paraphrases count data (52 interviews, 153 surveys) |
+| Shadow AI economy | ROUGE-L 0.147 | Lexical mismatch despite correct semantics (sim=0.825) |
+| Pilot-to-production chasm | ROUGE-L 0.105, faithfulness 0.273 | LLM does not reproduce the 60%→20%→5% funnel |
+| External partnerships | — | Latency-only (qual passes); see latency section |
+| Workforce reduction | Answer similarity 0.435 | LLM answer missing sector-specific detail (tech/media) |
+| 18-month window | Answer similarity 0.445, faithfulness 0.391 | Retrieved section header describes concept; specific timeframe in adjacent chunk |
+| MCP cross-doc (xfail) | Answer similarity 0.465, faithfulness 0.348 | Known: retriever can't satisfy two-doc intent in one pass |
 
 **Effective quality pass rate (ignoring CPU latency): 22/31 (71%).**
 
 ---
 
-*Generated: 2026-03-13. ChromaDB rebuild: 177 chunks (31 projects, 24 resume, 122 research). Model: llama3.2:latest via Ollama.*
+*Generated: 2026-03-13. Run: `pytest tests/evaluation/ -m retrieval` (30 s) and `pytest tests/evaluation/ -m e2e` (16 min on CPU).*
