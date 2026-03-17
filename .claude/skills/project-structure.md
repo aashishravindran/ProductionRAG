@@ -1,7 +1,7 @@
 # ProductionRAG -- Project Structure
 
 > Single source of truth for project layout, tech stack, and conventions.
-> Last updated: 2026-03-12 (query analyzer + rich metadata session)
+> Last updated: 2026-03-16 (research validation documentation session)
 
 ## Overview
 A production-ready RAG application that turns a personal resume into an interactive chat interface, grounded in real data sources (detailed GitHub project descriptions, resume, and supplementary PDFs).
@@ -42,6 +42,11 @@ ProductionRAG/
   tests/                    -- pytest test suite (ingestion + retrieval)
     __init__.py
     conftest.py             -- Shared fixtures (sample docs, fake embeddings, populated_store)
+    evaluation/             -- Golden dataset evaluation suite
+      golden_dataset.json   -- Ground truth question-answer pairs
+      test_rag_golden_dataset.py
+      metrics.py
+      reports/              -- Evaluation run reports
     test_loader.py
     test_chunker.py
     test_metadata.py        -- Rich metadata + citation tests (15 new)
@@ -54,7 +59,9 @@ ProductionRAG/
     test_rag_chain.py       -- End-to-end RAG chain tests
   .env.example              -- Env var template (GITHUB_TOKEN, GITHUB_USERNAME)
   .gitignore
-  CLAUDE.md                 -- Project log (lean format)
+  ARCHITECTURE.md            -- Architecture decisions and design rationale
+  RESEARCH_VALIDATION.md     -- Academic citations backing architecture decisions (arXiv/ACM)
+  CLAUDE.md                  -- Project log (lean format)
   README.md
   requirements.txt          -- Python dependencies
   chroma_db/                -- ChromaDB persistence (gitignored)
@@ -114,5 +121,7 @@ Ingestion orchestrated by `pipeline.py`; retrieval orchestrated by `rag_chain.py
 - [x] LLM-powered query analyzer (pre-retrieval metadata filtering)
 - [x] Rich metadata enrichment (project details, resume sections)
 - [x] Test suite for retrieval + generation (89 tests total)
+- [x] Golden dataset evaluation suite (tests/evaluation/)
+- [x] Architecture documentation with academic research validation
 - [ ] Chat interface / API layer
 - [ ] Data sourcing tests

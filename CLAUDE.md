@@ -35,3 +35,7 @@ Replaced pure vector search with a hybrid retrieval pipeline: BM25 keyword searc
 ## Session: 2026-03-12
 
 Added LLM-powered query analyzer for pre-retrieval metadata filtering, replaced old profile sources with detailed github_projects_detailed.pdf, and rewrote metadata enrichment with source-specific fields (project details, resume section detection). Tuned chunk sizes for resume and research docs. 89 tests passing.
+
+## Session: 2026-03-16
+
+Added RESEARCH_VALIDATION.md with academic citations (arXiv/ACM papers) backing the RAG architecture decisions: HyDE, hybrid search with RRF, cross-encoder reranking, the drowning effect, and compute/cold-start tradeoffs. Closes GitHub issues #3 and #4.
