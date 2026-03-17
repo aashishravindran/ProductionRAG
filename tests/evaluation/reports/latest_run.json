@@ -5,12 +5,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7776,
-    "rouge_l": 0.6207,
-    "faithfulness": 0.6364,
-    "latency_ms": 13464.0,
-    "generated_answer": "According to [1] (source: Resume.pdf, page: 0), the Scalable Dataplane reduced onboarding time to Service Quotas by 80%."
+    "context_recall": 0.8285,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What database was chosen as the backend for the Scalable Dataplane, and what design principles guided that choice?",
@@ -18,12 +19,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.6209,
-    "rouge_l": 0.0851,
-    "faithfulness": 0.1765,
-    "latency_ms": 9843.9,
-    "generated_answer": "The database mentioned in [2] (source: Resume.pdf, page: 0) is DynamoDB. \n\nUnfortunately, there is no additional information about design principles guiding this choice in the provided context."
+    "context_recall": 0.7713,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What accuracy did the Knowledge Base RAG system built using Amazon Bedrock achieve?",
@@ -31,12 +33,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7896,
-    "rouge_l": 0.4211,
-    "faithfulness": 0.6923,
-    "latency_ms": 10278.2,
-    "generated_answer": "According to [2], the Knowledge Base system achieved an accuracy of 80%. This was specifically in automated responses, achieved by utilizing Amazon Bedrock's API."
+    "context_recall": 0.8018,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What AWS services powered the quota automation framework, and what was the measurable business outcome?",
@@ -44,12 +47,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7435,
-    "rouge_l": 0.2174,
-    "faithfulness": 0.5588,
-    "latency_ms": 14085.8,
-    "generated_answer": "According to the provided context:\n\n* The quota automation framework was built using two AWS services:\n\t+ AWS Lambda\n\t+ AWS SNS (Simple Notification Service)\n* The measurable business outcome was a 80% reduction in onboarding time for Service Teams. This was achieved by building a Scalable Dataplane.\n\nNote that there is no mention of high-performance analysis results for accounts, which was mentioned in point [2]."
+    "context_recall": 0.972,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What was the latency SLA achieved by the asynchronous quota utilization reporting APIs, and for what percentage of accounts?",
@@ -57,12 +61,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.9128,
-    "rouge_l": 0.6,
-    "faithfulness": 0.6,
-    "latency_ms": 9387.8,
-    "generated_answer": "According to [1] (source: Resume.pdf, page: 0), the asynchronous API's achieved high-performance analysis (<2s) for 99% of accounts."
+    "context_recall": 0.8394,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "Which AWS leadership principle did Aashish implement while mentoring interns, and what was the outcome for those interns?",
@@ -70,12 +75,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7829,
-    "rouge_l": 0.3265,
-    "faithfulness": 0.6667,
-    "latency_ms": 9780.3,
-    "generated_answer": "According to [1] (source: Resume.pdf, page: 0), Aashish implemented AWS's \"Hire and Develop\" leadership principal while mentoring interns. The outcome for those interns was a 100% return offer rate."
+    "context_recall": 0.7238,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What was the purpose of the inaugural MCP server built by Aashish at AWS, and what operational improvement resulted?",
@@ -83,12 +89,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7347,
-    "rouge_l": 0.2821,
-    "faithfulness": 0.6667,
-    "latency_ms": 12612.5,
-    "generated_answer": "According to the context, the purpose of the inaugural Model Context Protocol (MCP) server built by Aashish at AWS was to streamline log analysis using AWS CloudWatch. The operational improvement that resulted from this is not explicitly stated in the provided context, but it can be inferred that the MCP server helped to improve log analysis performance."
+    "context_recall": 0.7376,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What specific legacy bug was fixed at AWS SDE I, and what was the quantified operational impact of the fix?",
@@ -96,12 +103,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.6585,
-    "rouge_l": 0.2857,
-    "faithfulness": 0.5357,
-    "latency_ms": 17820.9,
-    "generated_answer": "Unfortunately, the provided context does not mention a specific legacy bug that was fixed by AWS SDE I. The text mentions that a bug was identified and fixed in a legacy component causing notifications to be sent to the incorrect team, but it does not specify what the bug was or provide any further details.\n\nHowever, it does state that this fix resulted in a 20% reduction in operations pain."
+    "context_recall": 0.7249,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "In what capacity did Aashish improve CI/CD deployment safety, and by how much did rollbacks decrease?",
@@ -109,12 +117,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.924,
-    "rouge_l": 0.3396,
-    "faithfulness": 0.7778,
-    "latency_ms": 13347.1,
-    "generated_answer": "According to [1] (source: Resume.pdf, page: 0), as a Change Management Bar Raiser in AWS Support, Aashish improved CI/CD deployment safety. Specifically, it reduced the number of rollbacks in deployments by 15%."
+    "context_recall": 0.9422,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "How many years of experience does Aashish Ravindran have, and what are the three flagship project names cited in his professional summary?",
@@ -122,12 +131,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7379,
-    "rouge_l": 0.2647,
-    "faithfulness": 0.75,
-    "latency_ms": 10744.8,
-    "generated_answer": "Based on the provided context, I can answer your questions:\n\n1. The number of years of experience Aashish Ravindran has is 7+ years.\n2. The three flagship project names cited in his professional summary are:\n   - \"Scalable Data Plane\"\n   - \"Context Based Quotas\"\n   - \"Region Build Automation\""
+    "context_recall": 0.8677,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "According to the MIT NANDA GenAI Divide report, what percentage of organizations receive zero return on their GenAI investment?",
@@ -135,12 +145,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.9545,
-    "rouge_l": 0.5625,
-    "faithfulness": 0.6,
-    "latency_ms": 8978.6,
-    "generated_answer": "According to the provided context, 95% of organizations are getting zero return on their GenAI investment."
+    "context_recall": 0.6798,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What is the production deployment rate for task-specific GenAI tools, according to the GenAI Divide report?",
@@ -148,12 +159,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7802,
-    "rouge_l": 0.1071,
-    "faithfulness": 0.5714,
-    "latency_ms": 14746.6,
-    "generated_answer": "According to Exhibit [1] (source: Gen_ai_divide.pdf, page 5), the production deployment rates for task-specific GenAI tools are as follows:\n\n80%\n50%\n40%\n60%\n20% \n5%\n\nHowever, it appears that only one bar is mentioned with a value of \"5%\", which corresponds to the category \"Successfully Implemented\"."
+    "context_recall": 0.692,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What are the four defining patterns of the 'GenAI Divide' identified in the MIT NANDA report?",
@@ -161,12 +173,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.5449,
-    "rouge_l": 0.2162,
-    "faithfulness": 0.9211,
-    "latency_ms": 15568.1,
-    "generated_answer": "According to [2] (source: Gen_ai_divide.pdf, page 3), the four patterns that define the \"GenAI Divide\" are:\n\n1. Limited disruption\n2. Enterprise paradox (Big firms lead in pilot volume but lag in scale-up)\n3. Investment bias (Budgets favor visible, top-line functions over high-ROI back office)\n4. Implementation advantage (External partnerships see twice the success rate of internal implementations)"
+    "context_recall": 0.6232,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What is the 'shadow AI economy' as described in the GenAI Divide report, and what statistics illustrate the gap between official and unofficial AI usage?",
@@ -174,12 +187,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.8253,
-    "rouge_l": 0.1466,
-    "faithfulness": 0.7582,
-    "latency_ms": 57670.4,
-    "generated_answer": "According to the provided context:\n\nThe \"shadow AI economy\" refers to a thriving ecosystem where employees use personal AI tools, such as ChatGPT subscriptions, to automate significant portions of their jobs, often without IT knowledge or approval. This unofficial usage is creating a feedback loop, where employees are familiar with what good AI can do and are therefore less tolerant of static enterprise systems that don't provide the same level of functionality.\n\nStatistics illustrating the gap between official and unofficial AI usage include:\n\n* Only 40% of companies report purchasing an official LLM (Large Language Model) subscription.\n* However, workers from over 90% of companies surveyed reported regular use of personal AI tools for work tasks.\n* Almost every single person used an LLM in some form for their work.\n* The scale is remarkable, with shadow AI users reportedly using LLMs multiple times a day, every day of their weekly workload."
+    "context_recall": 0.7715,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "Describe the 'pilot-to-production chasm' \u2014 what percentage of companies make it through each stage of the GenAI adoption funnel?",
@@ -187,12 +201,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.5885,
-    "rouge_l": 0.1053,
-    "faithfulness": 0.2727,
-    "latency_ms": 50747.2,
-    "generated_answer": "According to the context provided in [2] (source: Gen_ai_divide.pdf, page 5), here are the percentages that describe the 'pilot-to-production chasm':\n\n- 80%: Investigated\n- 50%: Piloted\n- 40%: Successfully Implemented\n- 20% and 60% are not explicitly stated as being in these stages.\n \nNote that the exact breakdown for each stage is not explicitly provided, only the percentages of companies that make it through each subsequent stage."
+    "context_recall": 0.8848,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "How do external AI partnerships compare to internal builds in terms of reaching production deployment, per the GenAI Divide report?",
@@ -200,12 +215,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.851,
-    "rouge_l": 0.2041,
-    "faithfulness": 0.8043,
-    "latency_ms": 28355.4,
-    "generated_answer": "According to the GenAI Divide report (source: [1] and [4]), external AI partnerships see twice the success rate compared to internal builds. Specifically, it is stated that \"external partnerships see twice the success rate of internal builds\" in terms of reaching production deployment. Additionally, pilots built via strategic partnerships were 2x as likely to reach full deployment as those built internally, with employee usage rates nearly double for externally built tools."
+    "context_recall": 0.6936,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What are the three winning behaviors that the GenAI Divide report recommends for successful AI-buying organizations?",
@@ -213,12 +229,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Synthesized",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7567,
-    "rouge_l": 0.1429,
-    "faithfulness": 0.5556,
-    "latency_ms": 33512.7,
-    "generated_answer": "According to source [2] (page 19), the three winning behaviors recommended for successful AI-buying organizations are:\n\n1. Demanding deep customization aligned to internal processes and data.\n2. Benchmarking tools on operational outcomes, not model benchmarks.\n3. Partnering through early-stage failures, treating deployment as co-evolution.\n\nAdditionally, source [5] (page 18) briefly mentions two more key behaviors, which are:\n\n4. Buying rather than building (i.e., purchasing external tools and co-developing with vendors).\n5. Empowering line managers rather than central labs.\n\nNote that these five behaviors are not explicitly listed as the \"three winning behaviors\" in source [2], but rather a combination of behaviors that are mentioned as common among successful AI-buying organizations across the report."
+    "context_recall": 0.7596,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What workforce reduction does the GenAI Divide report predict, and in which specific sectors and job categories is it concentrated?",
@@ -226,12 +243,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.4354,
-    "rouge_l": 0.2093,
-    "faithfulness": 0.7273,
-    "latency_ms": 24141.9,
-    "generated_answer": "According to [2] (source: Gen_ai_divide.pdf, page: 20), the GenAI Divide reports that it predicts selective displacement of previously outsourced functions. This selective displacement is concentrated in functions such as customer support, software engineering, and administrative tasks.\n\nAdditionally, [6.4.1 Displacement Patterns and Organizational Strategy] (source: Gen_ai_divide.pdf, page: 20) states that the displacement patterns concentrate in systems that integrate with existing processes and improve over time."
+    "context_recall": 0.5613,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "The GenAI Divide report warns of an '18-month window' \u2014 what does this refer to and why is it significant for enterprise buyers?",
@@ -239,12 +257,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.445,
-    "rouge_l": 0.1408,
-    "faithfulness": 0.3913,
-    "latency_ms": 23065.4,
-    "generated_answer": "Unfortunately, the provided context does not mention what exactly the 18-month \"window\" refers to. It only mentions that there is a rapidly closing \"window\" for crossing the GenAI Divide, but the specific reference to an 18-month window is not present in the text."
+    "context_recall": 0.8479,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What research methodology did the MIT NANDA authors use for the GenAI Divide study, and how many data points were collected across each method?",
@@ -252,12 +271,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.6391,
-    "rouge_l": 0.0923,
-    "faithfulness": 0.8358,
-    "latency_ms": 39218.9,
-    "generated_answer": "According to the provided context:\n\n1. The research methodology used by the MIT NANDA authors for the GenAI Divide study is a multi-method research design, which includes:\n\t* A systematic review of over 300 publicly disclosed AI initiatives.\n\t* Structured interviews with representatives from 52 organizations.\n\t* Survey responses from 153 senior leaders collected across four major industry conferences.\n\n2. The number of data points collected across each method are as follows:\n\t* Systematic review: Over 300 publicly disclosed AI initiatives (not a specific number, but an estimate based on the scope).\n\t* Structured interviews with representatives from 52 organizations.\n\t* Survey responses from 153 senior leaders collected across four major industry conferences."
+    "context_recall": 0.6811,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What is the total number of repositories documented in Aashish Ravindran's GitHub Projects reference document, and on what date was it generated?",
@@ -265,12 +285,13 @@
     "difficulty": "Easy",
     "reasoning_type": "Direct",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7604,
-    "rouge_l": 0.3704,
-    "faithfulness": 0.7778,
-    "latency_ms": 15104.7,
-    "generated_answer": "According to context [1], Aashish Ravindran has 13 repositories. The document was generated on March 12, 2026."
+    "context_recall": 1.0,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What hybrid retrieval strategy does ProductionRAG use at query time, and which specific algorithms are combined?",
@@ -278,12 +299,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.7767,
-    "rouge_l": 0.3,
-    "faithfulness": 0.7241,
-    "latency_ms": 37661.8,
-    "generated_answer": "According to [2], the production-ready Retrieval-Augmented Generation (RAG) application, ProductionRAG, uses a hybrid retrieval strategy at query time. Specifically, it combines:\n\n1. BM25 keyword search\n2. ChromaDB semantic search\n\nThese two retrievals are merged via Reciprocal Rank Fusion (RRF) to achieve superior recall."
+    "context_recall": 0.7051,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "How does the agentic-fitness-app model and track fatigue across workout sessions?",
@@ -291,12 +313,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.8377,
-    "rouge_l": 0.2783,
-    "faithfulness": 0.7069,
-    "latency_ms": 46554.5,
-    "generated_answer": "According to the provided context, specifically [3] (source: github_projects_detailed.pdf, page: 3), the agentic-fitness-app model tracks fatigue across workout sessions using a combination of methods:\n\n1. Time-based decay model: Fatigue is tracked with a 3% per hour decay rate.\n2. RPE-based accumulation: The app accumulates fatigue scores based on the Rate of Perceived Exertion (RPE).\n3. Automatic rest-day recovery: The system automatically deducts rest days from fatigue tracking, preventing overtraining.\n\nAll state related to workout history, fatigue scores, and user profiles is persisted in per-user SQLite databases."
+    "context_recall": 0.5708,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "Which archived academic projects from Stony Brook University are listed in the GitHub projects document, and what language/domain does each use?",
@@ -304,12 +327,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Synthesized",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.8436,
-    "rouge_l": 0.1905,
-    "faithfulness": 0.875,
-    "latency_ms": 36107.1,
-    "generated_answer": "According to the provided context, there are 3 archived academic projects from Stony Brook University that are listed:\n\n1. PostureRecognition - Machine Learning / Gesture Recognition / Research (uses MATLAB)\n2. crc_analysis - Network Analysis / Research (uses Python)\n3. humanActivityRecognition - Android / Mobile / Machine Learning / CPS (uses Kotlin)"
+    "context_recall": 0.6987,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What is the steal-my-agents project, what are its two installation modes, and what is its flagship agent?",
@@ -317,12 +341,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.8612,
-    "rouge_l": 0.5567,
-    "faithfulness": 0.8611,
-    "latency_ms": 49060.4,
-    "generated_answer": "According to the provided context:\n\nThe \"steal-my-agents\" project is a curated collection of Claude Code sub-agents.\n\nIt has two installation modes:\n\n1. Global\n2. Per-project (which allows users to choose)\n\nIts flagship agent is called \"project-wrapup\", an end-of-session agent that autonomously updates documentation, writes conventional-commit messages, commits, pushes to remote, and produces a clean session summary."
+    "context_recall": 0.7512,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What video quality metric does the video_quantification project use to evaluate packet-loss-induced degradation, and what library computes it?",
@@ -330,12 +355,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.8662,
-    "rouge_l": 0.4211,
-    "faithfulness": 0.6667,
-    "latency_ms": 32606.4,
-    "generated_answer": "According to the provided context, the video_quantification project uses SSIM (Structural Similarity Index Measure) as a video quality metric to evaluate packet-loss-induced degradation. It is computed using scikit-image / skimage."
+    "context_recall": 0.8564,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What multi-agent pattern does the agentic-fitness-app use, and how does it route user requests to specialist coaches?",
@@ -343,12 +369,13 @@
     "difficulty": "Medium",
     "reasoning_type": "Multi-hop",
     "stress_test": null,
-    "context_recall": null,
-    "answer_similarity": 0.9637,
-    "rouge_l": 0.5763,
-    "faithfulness": 0.913,
-    "latency_ms": 52317.7,
-    "generated_answer": "The agentic-fitness-app uses a LangGraph supervisor/worker multi-agent pattern. According to the project description, a supervisor agent routes user requests to specialist worker agents covering strength training, yoga, HIIT, and kickboxing."
+    "context_recall": 0.6899,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "What AI framework is used for building MCP-integrated agents in the AiAgents project \u2014 is it LangGraph, Amazon Bedrock, or the Strands framework?",
@@ -356,12 +383,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Direct",
     "stress_test": "Hard Negative: The question lists LangGraph (used in agentic-fitness-app) and Amazon Bedrock (mentioned in Resume.pdf) as distractors. A confused retriever might surface those documents instead of the correct AiAgents entry.",
-    "context_recall": null,
-    "answer_similarity": 0.8458,
-    "rouge_l": 0.32,
-    "faithfulness": 0.7667,
-    "latency_ms": 33281.1,
-    "generated_answer": "The AI framework used for building MCP-integrated agents in the AiAgents project is the Strands framework. According to the context provided, specifically from [1] (source: github_projects_detailed.pdf, page 6), it states that \"Strands-based agent equipped with a suite of tools... using the Strands framework with Model Context Protocol (MCP) tool integration.\""
+    "context_recall": 0.8735,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "The resume mentions a 25% ops pain reduction via an MCP server using CloudWatch. Which GitHub project demonstrates MCP tool integration, and what framework does it use \u2014 is it the same system?",
@@ -369,25 +397,13 @@
     "difficulty": "Hard",
     "reasoning_type": "Synthesized",
     "stress_test": "Hard Negative / Ambiguity: Both documents use the term 'MCP' and 'Model Context Protocol', but they refer to distinct systems. A RAG system without metadata filtering may conflate the production resume entry with the demo project.",
-    "context_recall": null,
-    "answer_similarity": 0.4649,
-    "rouge_l": 0.1951,
-    "faithfulness": 0.3478,
-    "latency_ms": 33951.7,
-    "generated_answer": "I don't see any information about a GitHub project in the provided context. The text only mentions a 25% ops pain reduction via an MCP server using CloudWatch on page [3], but it doesn't mention a specific GitHub project or the framework used (if any)."
-  },
-  {
-    "question": "The GenAI Divide paper states '5% deploy' for GenAI tools. Does this match the accuracy figure for the RAG system described in the resume, and what does each percentage actually refer to?",
-    "document_source": "Gen_ai_divide.pdf",
-    "difficulty": "Hard",
-    "reasoning_type": "Synthesized",
-    "stress_test": "Hard Negative / Ambiguity: Both documents mention percentages in the context of AI/RAG systems. A retriever that does simple keyword matching on 'RAG accuracy percentage' may conflate the two, returning the wrong document or blending the answer incorrectly.",
-    "context_recall": null,
-    "answer_similarity": 0.7115,
-    "rouge_l": 0.1562,
-    "faithfulness": 0.2,
-    "latency_ms": 53285.1,
-    "generated_answer": "Unfortunately, I do not have any information about a \"RAG system\" mentioned in the provided context (Gen_ai_divide.pdf). The context only discusses the GenAI Divide paper, its findings, and implications for organizations.\n\nThe statement \"5% deploy\" from the paper likely refers to the percentage of organizations that are successfully deploying GenAI tools that meet their needs. However, without further information about the RAG system, I cannot confirm if this matches or relates to the accuracy figure mentioned in the question."
+    "context_recall": 0.7601,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   },
   {
     "question": "Across the resume and GitHub projects, how many distinct AI agent systems has Aashish built or contributed to, and what underlying frameworks do they use?",
@@ -395,11 +411,12 @@
     "difficulty": "Hard",
     "reasoning_type": "Synthesized",
     "stress_test": "Global/Cross-document: Requires synthesizing information across Resume.pdf and github_projects_detailed.pdf. Tests whether the RAG system can aggregate correctly without double-counting or missing entries.",
-    "context_recall": null,
-    "answer_similarity": 0.6402,
-    "rouge_l": 0.0599,
-    "faithfulness": 0.4308,
-    "latency_ms": 53280.7,
-    "generated_answer": "Unfortunately, I don't have enough information from the provided context to accurately answer this question. The resume only mentions one project, which is building team's first AI agents using Amazon Bedrock and RAG (Retrieval-Augmented Generation), but it doesn't specify how many distinct AI agent systems Aashish built or contributed to.\n\nAdditionally, the GitHub projects document ([2]) does not provide any information about Aashish's contributions. The only relevant section is the abstract of [5] which mentions several protocols (Context Protocol, Agent-to-Agent, NANDA) but doesn't relate directly to Aashish's work.\n\nTherefore, I can only conclude that I don't have enough information to answer this question accurately."
+    "context_recall": 0.7982,
+    "answer_similarity": null,
+    "rouge_l": null,
+    "faithfulness": null,
+    "latency_ms": null,
+    "generated_answer": null,
+    "retrieved_chunks": 5
   }
 ]
